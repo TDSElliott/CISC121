@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    	<style>
+    		code {
+    			font-size: 1.0rem;	
+    		}
+    	</style>
+</head>
+<body>
+<h1>Due Date and Submission</h1>
+<p>This assignment is due by <strong>23:59 on Monday, October 23<sup>rd</sup></strong>; late submissions will not be accepted.</p>
+<p>Assignment submission will take place in OnQ. You must upload a single Python file containing your work.</p>
+<p><strong>Please note</strong> that you can "re-submit" (<em>i.e.</em>, re-upload) your assignment in OnQ. Feel free to upload partially-completed or "imperfect" work as a "backup" in case you encounter problems while attempting to submit at the last moment.</p>
+<h1>Overview and Requirements</h1>
+<p>For this assignment, you will implement a series of functions that test and implement sorting in linked lists containing numeric data (<strong>not</strong> any other data type).</p>
+<p>Your implementation <strong>is permitted</strong> to include, but <strong>does not have to</strong> include, your own "helper functions" which you may implement and must comment clearly.</p>
+<p>Your implementation <strong>is not</strong> permitted to include:</p>
+<ul>
+<li>input from the user;</li>
+<li>output to the screen (<em>e.g.</em>, debugging statements) beyond that in the testing script;</li>
+<li>any usage of Python's built-in <code>list</code> type in any way beyond that in the testing script.</li>
+</ul>
+<p><strong>Any assignment submission which uses Python's built-in <code>list</code> type will receive a grade of zero.</strong></p>
+<h1>Terminology</h1>
+<dl>
+<dt>Non-decreasing order</dt>
+<dd>A collection ordered such that each element is <em>greater than or equal to</em> the previous element (<em>i.e.</em>, sorted with duplicates). For example, <code>[1, 3, 5, 5, 7, 9, 9]</code> is in non-decreasing order but <code>[1, 3, 5, 3]</code> is not.</dd>
+</dl>
+<h1>Starting Code</h1>
+<p>Download a copy of <code>Assn2Skeleton.py</code> from OnQ and rename it <code>Assignment2.py</code> for your assignment submission. It contains some functions that will be useful for testing and the "stubs" of the functions you have to write for this assignment.</p>
+<p>Your functions MAY NOT call these functions directly or use the Python built-in list type in any way. You may write additional helper functions of your own and use them in your required functions if you wish.</p>
+<h1>Functions</h1>
+<h2><code>isSorted</code> (4 points)</h2>
+<p>Write a function called <code>isSorted</code> which takes a linked list of numbers as a parameter and returns <code>True</code> if the list is sorted in non-decreasing order and <code>False</code> otherwise.</p>
+<p>For example, if you create a linked list that is equivalent to <code>[2,3,5,9]</code>, calling <code>isSorted</code> with that list should return <code>True</code>. But for a linked list equivalent to <code>[2,3,9,5]</code>, it should return <code>False</code>.</p>
+<p>Your function <strong>must not</strong> change the list or print anything, just return a Boolean result.</p>
+<h2><code>noDuplicates</code> (4 points)</h2>
+<p>Write a function called <code>noDuplicates</code> which takes a linked list of numbers as a parameter. You may assume that this list is sorted in non-decreasing order. Your function must remove any duplicates from the list and return a pointer to the changed version of this list.</p>
+<p>For example, if <code>linkedListOfNumbers</code> is a linked list equivalent to <code>[2,2,3,5,5,5,5,7,7]</code> and you call <code>linkedListOfNumbers = noDuplicates(linkedListOfNumbers)</code>, <code>linkedListOfNumbers</code> should now contain to a linked list equivalent to <code>[2,3,5,7]</code>.</p>
+<h2><code>insertInOrder</code> (4 points)</h2>
+<p>Write a function called <code>insertInOrder</code> which takes two parameters:</p>
+<ol>
+<li>a linked list of numbers, which you may assume is sorted in non-decreasing order; and,</li>
+<li>a new value to add to the list (you may assume it's a number)</li>
+</ol>
+<p>Your function must add the value to the list and return a pointer to the changed version of the list. If the list already contains the value, add it as a duplicate.</p>
+<p>For example, if <code>linkedListOfNumbers</code> is a linked list equivalent to <code>[1,3,5,7]</code> and you call <code>linkedListOfNumbers = insertInOrder(linkedListOfNumbers, 5)</code>, <code>linkedListOfNumbers</code> should now point to a linked list equivalent to <code>[1,3,5,5,7]</code>.</p>
+<h2><code>sortLinkedList</code> (4 points)</h2>
+<p>This function must take a linked list of numbers as a parameter and return a pointer <strong>to a new list</strong> which contains the same values as the original list but is sorted in non-decreasing order. The linked list passed as a parameter <strong>must not be changed</strong>.</p>
+<p>For example, if <code>linkedListOfNumbers</code> is a linked list equivalent to <code>[4,2,6,3,4]</code> and you call <code>orderedLinkedListOfNumbers = sort(linkedListOfNumbers)</code>, <code>orderedLinkedListOfNumbers</code> should point to a linked list equivalent to <code>[2,3,4,4,6]</code> but <code>linkedListOfNumbers</code> should still be <code>[4,2,6,3,4]</code> after the call.</p>
+<p>The simplest way to do this sort is to use an algorithm called an "insertion sort". Start with an empty list and add each element of the parameter list into the new list, putting it in the correct position to keep the new list in order. Once you've got <code>insertInOrder</code> working, this sort should be fairly easy.</p>
+<h1>Testing Script</h1>
+<p>Please download a copy of <code>Assn2Testing.py</code> from OnQ. This script will help you determine if your solution meets the administrative requirements for this assignment.</p>
+<p>If you run it with your solution and it loads and runs without errors, it means that you have got all the right names, numbers of parameters, etc, and that your functions work correctly on one small test case. It is by no means a guarantee that your functions will work correctly with all examples, so you should also try your own test cases as well.</p>
+<p>If you're not able to write all of the functions for this assignment, this testing script can still be useful. You can comment out the parts relating to the functions you were not able to complete.</p>
+<h1>Marking Scheme</h1>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isSorted</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>noDuplicates</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>insertInOrder</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>sortLinkedList</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td>Style</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+</body>
+    
+    <h1>Attribution</h1>
+    <p>This assignment was created by Margaret Lamb and is licensed under Creative Commons Attribution-NonCommercial (CC BY-NC).</p>
+</body>
+</html>
