@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<h1>CISC 121, Fall 2017 Assignment 1: Basic Python</h1>
+<h2>Due: October 2<sup>nd</sup> 23:59 - (submit assignment through OnQ)</h2>
+<h2>Marking Scheme</h2>
+<p><strong>Style:</strong> Marked out of 2:</p>
+<ul>
+<li><strong>/2</strong> Comments, spacing, variable names</li>
+</ul>
+<p><strong>Part 1:</strong> Marked out of 9:</p>
+<ul>
+<li><strong>/1</strong> <code>askForName()</code></li>
+<li><strong>/5</strong> <code>calculateASCIITotal()</code></li>
+<li><strong>/3</strong> <code>main()</code></li>
+</ul>
+<p><strong>Part 2:</strong> Marked out of 9:</p>
+<ul>
+<li><strong>/2</strong> <code>readBasicDigitalImageFile()</code></li>
+<li><strong>/4</strong> <code>isPixelSpaceJunk()</code></li>
+<li><strong>/3</strong> <code>main()</code></li>
+</ul>
+<p><strong>/20</strong> Total</p>
+<h2>Part 1: Superhero Kitten Name Generator</h2>
+<blockquote><em>Overheard in a park ...</em><br /> &nbsp; &nbsp; &nbsp; Child 1: "Let's play superheroes!"<br /> &nbsp; &nbsp; &nbsp; Child 2: "Let's play kittens"<br /> &nbsp; &nbsp; &nbsp; Child 3: "Let's play superhero kittens!"</blockquote>
+<p>For this part of the assignment, you will write a small program which "generates" the name for a superhero kitten based on the user's name.</p>
+<p>The program will first prompt the user for their name, and then use the ASCII values of the characters in their name to map it to a superhero prefix and a kitten postfix that have been provided below as lists. Your program should then output the combined superhero-kitten name. For example, your output might be:</p>
+<p><code>"Super Whiskers"</code></p>
+<p>Below are the requirements for this part of the assignment.</p>
+<h3>Requirements</h3>
+<ol>
+<li>Your program must implement a function, <code>askForName()</code> which has one parameter. The function will ask for either the user's first name, or last name, depending on the parameter's value, and return it.</li>
+<li>Your program must implement a function, <code>calculateASCIITotal()</code> which has one parameter. The function should calculate the total sum of the ASCII values of all the characters in the given parameter using a loop, and return that value.</li>
+<li>Your program must implement a <code>main()</code> function which:
+<ol style="list-style-type: lower-alpha;">
+<li>Asks the user for their first name, then last name</li>
+<li>Determines the total ASCII values for each name</li>
+<li>Maps the first name to a superhero prefix from a list (hint: use a mathematical operator to calculate an index)</li>
+<li>Maps the last name to a kitten postfix from a list</li>
+<li>Outputs the combined superhero-kitten name</li>
+</ol>
+</li>
+</ol>
+<h3>Lists of Superhero and Kitten Names</h3>
+<p>Please use the following lists of prefixes and postfixes in your assignment. Feel free to customize them.</p>
+<p><code>listOfSuperheroPrefixes = ['Super', 'Ultra', 'Marvel', 'Mega', 'Laser', 'Lightning', 'Thunder', 'Power', 'Iron', 'Captain']</code><br /> <code>listOfKittenPostfixes = ['Fuzz', 'Whiskers', 'Purr', 'Paw', 'Claw', 'Fang', 'Snuggle', 'Cuddle', 'Cute Overload']</code></p>
+<h2>Part 2: Find the Space Junk</h2>
+<p><em>This question was inspired a little by the website <a href="http://joshworth.com/dev/pixelspace/pixelspace_solarsystem.html">If the Moon Were Only 1 Pixel</a>.</em></p>
+<p>For this part of the assignment, you have been given a series of extremely basic digital images (<em>i.e.</em> in the fictional <code>.bdi</code> format) representing photographs of space. These images are monochromatic and their files simply contain a grid of 0s and 1s, each representing one pixel.</p>
+<p>Create a program which locates small pieces of space junk within these images. A piece of space junk has been characterised as just a single pixel with the value of 1, surrounded by pixels with the value of 0. Surrounding pixels include pixels directly above and below, left and right pixels, as well as diagonals.</p>
+<p>Below are the requirements for this part of the assignment.</p>
+<h3>Requirements</h3>
+<ol>
+<li>Your program must implement a function <code>readBasicDigitalImageFile()</code> which has one parameter. The function should read in the contents of the <code>.bdi</code> file (which is really just a text file) and return a 2D list containing the image's pixel values.</li>
+<li>Your program must implement a function isPixelSpaceJunk() which has three parameters: a 2D list, and two indices. The function should:
+<ol style="list-style-type: lower-alpha;">
+<li>Check the pixel at the given indices for a value of 1</li>
+<li>If the pixel is 1, check all of the pixel's "neighbours" (all eight, including diagonals) for a value of 0. There is no space junk on the borders of the image</li>
+</ol>
+The function should return whether or not the pixel is space junk (as a Boolean).</li>
+<li>Your program must implement a <code>main2()</code> function which:
+<ol style="list-style-type: lower-alpha;">
+<li>Reads in the contents of a <code>.bdi</code> file into a 2D list</li>
+<li>Loops through each pixel in the 2D list and tests for space junk</li>
+<li>Prints out each pair of indices for pixels that match the criteria for space junk</li>
+</ol>
+</li>
+</ol>
+<p>Please use the provided <code>.bdi</code> file to test you program.</p>
+</body>
+</html>
