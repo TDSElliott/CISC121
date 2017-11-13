@@ -1,0 +1,12 @@
+Algorithm Design:
+
+1.  If list is empty, return list
+
+2.  Loop through the list, check if the current 'data' value
+    is the same as the following 'data' value
+
+3.  If it is the same, connect the 'next' of the current node,
+    to the 'next' of the following node
+
+4.  Loop again to check if the new following 'data' is the same
+    value as the current 'data' value

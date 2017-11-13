@@ -1,0 +1,12 @@
+Algorithm Design:
+
+Cases:
+1.  If the linked list is empty, make the node the head
+    and return it
+2.  If the value to be inserted is < the head node,
+    insert the node at the start as the head
+3.  Loop until you reach a node with a value
+    greater than the value to be inserted. The node just before
+    this greater value is what should be connected
+4.  Insert the node after the appropriate node found previous,
+    linking back up the end of the linked list
