@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<title>CISC 121 | Fall, 2017 | Assignment 3 | Complexity and a Little Recursion</title>
+    	<style>
+    		code, pre {
+    			font-size: 1.0rem;	
+    		}
+    		
+    		table {
+    			border-collapse: collapse;	
+    		}
+    		
+    		table tr th, table tr td {
+    			border-bottom: 1px solid black;	
+    			padding: 5px 10px;
+    		}
+    	</style>
+    </head>
+    <body>
+<h1>Due Date and Submission</h1>
+<p>This assignment is due by <strong>23:59 on Monday, November 13<sup>th</sup></strong>; late submissions will not be accepted.</p>
+<p>Assignment submission will take place in OnQ. You must upload a single zip file containing your work in two Python files.</p>
+<p><strong>Please note</strong> the following:</p>
+<ul>
+<li>you can re-submit (<em>i.e.</em>, re-upload) your assignment in OnQ - feel free to upload partially-completed or imperfect work as a backup in case you encounter problems while attempting to submit at the last moment;</li>
+<li>the instructors and TAs cannot debug code via email - please make an appointment with a TA or visit an instructor during office hours; and,</li>
+<li>please read these instructions carefully and use Google before emailing an instructor or a TA - the response time for emails will slow considerably if the recipients are inundated with questions, especially ones that could be answered easily through other means.</li>
+</ul>
+<h1>Part 1: Computational Complexity</h1>
+<h2>Objectives</h2>
+<p>This part of the assignment has two objectives.</p>
+<ul>
+<li>The first is to give you some practice thinking about the complexity of a few Python functions. This part is impossible to mark directly, but <strong>you are strongly encouraged to take it seriously</strong> because there will be quiz and/or exam questions where you have to do this.</li>
+<li>The second is to let you confirm the complexity of these functions experimentally. That's a useful thing to know how to do and may give you a more down-to-earth understanding of what complexity really means.</li>
+</ul>
+<h2>Starting Code</h2>
+<p>First, download a copy of <a href="Assignment3Part1.py">Assignment3Part1.py</a>. It contains:</p>
+<ul>
+<li>four different numbered <code>mystery</code> functions where:
+<ul>
+<li>each one takes a list of numbers as a parameter;</li>
+<li>each one changes that list in place; and,</li>
+<li>none of them return a result.</li>
+</ul>
+</li>
+<li>several other functions to help you experiment with the timing of and the number of steps in the <code>mystery</code> functions.</li>
+</ul>
+<p>Second, download a copy of <a href="Assignment3Part1FunctionCalls.py">Assignment3Part1FunctionCalls.py</a> and place it in the same directory. It contains an <code>import</code> statement which will allow you to conduct your experiments.</p>
+<p>Your task is to modify these files and hand in the result.</p>
+<h2>Requirements</h2>
+<h3>Requirement #1</h3>
+<p>Study each <code>mystery</code> function carefully and decide what its complexity is. There's nothing to hand in for this step, but please take time for this step so you can verify your conclusions in the remaining steps. This will give you experience working with complexity before you have to answer similar quiz and exam questions without being able to run the code.</p>
+<p>For example,</p>
+<pre>def mysteryExample(numbers) :
+    n = len(numbers)
+    i = 0
+    even = 0
+    
+    while (i &lt; n) :
+        if (numbers[i] % 2) == 0 :
+            even += 1
+        i += 1
+    </pre>
+<p>appears to have O(n) complexity.</p>
+<h3>Requirement #2</h3>
+<p>In each <code>mystery</code> function, identify a <em>fundamental step</em>. Recall that a fundamental step is a statement or block of statements that are executed more times than any other statements in the function. Your fundamental step must be O(1) on its own.</p>
+<p>Modify each <code>mystery</code> function so that it counts the number of times the fundamental step is executed. <span style="text-decoration: underline;">Make each function return the number of times the step is executed</span>. If you believe there is more than one fundamental step (two or more different steps that need to be counted), feel free to count them all.</p>
+<p>For example,</p>
+<pre>def mysteryExample(numbers) :
+    n = len(numbers)
+    i = 0
+    even = 0
+    fundamentalSteps = 0
+    
+    while (i &lt; n) :
+        if (numbers[i] % 2) == 0 :
+            even += 1
+            fundamentalSteps += 1 # Optional
+        i += 1
+        fundamentalSteps += 1 # Executed most often
+
+    return fundamentalSteps
+    </pre>
+<h3>Requirement #3</h3>
+<p>The file <a href="Assignment3Part1.py">Assignment3Part1.py</a> contains a function <code>printTimingTable</code> which has three parameters:</p>
+<ul>
+<li>the string name of a <code>mystery</code> function to test;</li>
+<li>the start size for the list of numbers to pass as a parameter to the <code>mystery</code> function; and,</li>
+<li>the end size for the list of numbers.</li>
+</ul>
+<p>The function prints a table with 10 rows, one for each value of N within the range [start size, end size] spaced at equal intervals. For example, a call to <code>printTimingTable("mysteryExample", 10000, 100000)</code> produces the following output:</p>
+<pre>----- Testing Function mysteryExample -----
+ -List Size-   -Time-   -Steps-   -logN-    -N-      -NlogN-      -N^2-       -N^3-   
+    1e+04      0.003   1.49e+04     13      1e+04   1.33e+05      1e+08        1e+12   
+    2e+04      0.005     3e+04      14      2e+04   2.86e+05      4e+08        8e+12   
+    3e+04      0.007   4.51e+04     15      3e+04   4.46e+05      9e+08       2.7e+13  
+    4e+04      0.010     6e+04      15      4e+04   6.12e+05     1.6e+09      6.4e+13  
+    5e+04      0.012    7.5e+04     16      5e+04    7.8e+05     2.5e+09     1.25e+14  
+    6e+04      0.014   8.99e+04     16      6e+04   9.52e+05     3.6e+09     2.16e+14  
+    7e+04      0.017   1.05e+05     16      7e+04   1.13e+06     4.9e+09     3.43e+14  
+    8e+04      0.023    1.2e+05     16      8e+04    1.3e+06     6.4e+09     5.12e+14  
+    9e+04      0.022   1.35e+05     16      9e+04   1.48e+06     8.1e+09     7.29e+14  
+    1e+05      0.024    1.5e+05     17      1e+05   1.66e+06      1e+10        1e+15 
+    </pre>
+<p>For each <code>mystery</code> function, add a call to <code>printTimingTable</code> in the <code>main</code> function in <a href="Assignment3Part1FunctionCalls.py">Assignment3Part1FunctionCalls.py</a>. You must pick a range of sizes that are large enough that it's clear which column is closest (thus verifying the complexity) but which is not so large that your experiment takes a very long time to run - you will have to find a good range of sizes by trial and error.</p>
+<h3>Requirement #4</h3>
+<p>Look at the results of your four experiments and see what they tell you about the complexity of the function being tested. Add a comment to the start of each of the <code>mystery</code> functions stating its complexity. For example, the header comment for one of your functions might include the sentence "The complexity of this function is O(n log n)".</p>
+<p>If the results of your experiment doesn't match your initial opinion about the complexity of the function being tested, try to figure out why. Was your initial opinion wrong? Or did your experiment not identify the right fundamental step, or did it fail to count the steps correctly?</p>
+<h1>Part 2: Recursion</h1>
+<h2>Objectives</h2>
+<p>This part of the assignment also has two objectives.</p>
+<ul>
+<li>The first is to give you more experience working with linked lists. This will help you prepare for the upcoming course topic on Binary Search Trees (BSTs) which also use links to elements.</li>
+<li>The second is to provide you more experience with working with recursion.</li>
+</ul>
+<h2>Starting Code</h2>
+<p>Download a copy of <a href="Assignment3Part2.py">Assignment3Part2.py</a>. It contains the header for the <code>reverse(...)</code> function, as well as a test function which includes calls to some helper functions.</p>
+<p>Your task is to modify this file by filling in the body of the <code>reverse(...)</code> function and handing in the result.</p>
+<h2>Requirements</h2>
+<p>Write the body of the function <code>reverse(...)</code> which has one parameter. This function should:</p>
+<ul>
+<li>take a linked list as a parameter;</li>
+<li>reverse it in place; and,</li>
+<li>return a copy of the reversed linked list.</li>
+</ul>
+<p>Your function should not make any calls to any other functions, including the helper functions. Do not modify anything else in the file except for the body of <code>reverse(...)</code>.</p>
+<p>You may wish to use your own test cases but do not include these in your solution. Your function should still work if it is given an empty list, which you may assume is represented as <code>None</code>.</p>
+<p>Example: if you have a linked list equivalent to <code>[1, 2, 3, 4, 5]</code>, <code>reversedLinkedList = reverse(linkedList)</code> should result in <code>reversedLinkedList</code> being equal to the equivalent of <code>[5, 4, 3, 2, 1]</code>.</p>
+<h1>What To Hand In</h1>
+<p>You must hand in three files within a single ZIP file named <code>Assignment3.zip</code> with your modified versions of:</p>
+<ul>
+<li><code>Assignment3Part1.py</code></li>
+<li><code>Assignment3Part1FunctionCalls.py</code>.</li>
+<li><code>Assignment3Part2.py</code>.</li>
+</ul>
+<h1>Marking Scheme</h1>
+<table>
+<thead>
+<tr style="height: 24px;">
+<th colspan="2" style="height: 24px;">Component</th>
+<th style="height: 24px;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr style="height: 48px;">
+<td rowspan="3" style="height: 144px;">Computational Complexity</td>
+<td style="height: 48px;">Modifying each mystery function to include step count (2 points each)</td>
+<td style="height: 48px;">8</td>
+</tr>
+<tr style="height: 48px;">
+<td style="height: 48px;">Appropriate experiment function calls to measure each mystery function (1 point each)</td>
+<td style="height: 48px;">4</td>
+</tr>
+<tr style="height: 48px;">
+<td style="height: 48px;">Comment with a conclusion about the complexity of each mystery function (2 points each)</td>
+<td style="height: 48px;">8</td>
+</tr>
+<tr style="height: 24px;">
+<td rowspan="4" style="height: 96px;">Recursion</td>
+<td style="height: 24px;">Base case(s)</td>
+<td style="height: 24px;">1</td>
+</tr>
+<tr style="height: 24px;">
+<td style="height: 24px;">Recursive step</td>
+<td style="height: 24px;">2</td>
+</tr>
+<tr style="height: 24px;">
+<td style="height: 24px;">Linked list manipulation</td>
+<td style="height: 24px;">2</td>
+</tr>
+<tr style="height: 24px;">
+<td style="height: 24px;">Return statement</td>
+<td style="height: 24px;">1</td>
+</tr>
+<tr style="height: 24px;">
+<td colspan="2" style="height: 24px;">Style</td>
+<td style="height: 24px;">4</td>
+</tr>
+<tr style="height: 69.6px;">
+<td colspan="2" style="height: 69.6px;">Total</td>
+<td style="height: 69.6px;">30</td>
+</tr>
+</tbody>
+</table>
+<h1>Attribution</h1>
+<p>The first part of this assignment was created by Margaret Lamb and is licensed under Creative Commons Attribution-NonCommercial (CC BY-NC).</p>
